@@ -38,7 +38,7 @@ const StyledChatRoom = styled.section`
         height: 400px;
         width: 800px;
         margin: 0 auto;
-        overflow: hidden;
+        overflow: scroll;
         border-radius: 7px;
         border: 1px solid lightgray;
         > ul {
@@ -180,6 +180,21 @@ const StyledChatRoom = styled.section`
             background:white;
             color: dodgerblue;
         }
+      }
+      
+      .fade-enter {
+        opacity: 0.01;
+      }
+      .fade-enter-active {
+        opacity: 1;
+        transition: opacity 500ms ease-in;
+      }
+      .fade-exit {
+        opacity: 1;
+      }
+      .fade-exit-active {
+        opacity: 0.01;
+        transition: opacity 500ms ease-in;
       }
 `;
 

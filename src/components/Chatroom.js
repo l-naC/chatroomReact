@@ -3,6 +3,7 @@ import '../App.css';
 import * as firebase from 'firebase';
 import marked from 'marked'
 import StyledChatRoom from './style'
+import {CSSTransition,TransitionGroup} from 'react-transition-group'
 
 class Chatroom extends Component {
     constructor(){
@@ -111,12 +112,14 @@ class Chatroom extends Component {
     render() {
         const currentMessage = this.markedDown.map((item) => {
             return (
-                <li key={item.ts} className="message-screen">
-                    <div className={item.displayName === this.state.user.displayName ? "my-message" : ''}>
-                        <span className="message-sender">{item.displayName}</span>
-                        <span className="message" dangerouslySetInnerHTML={{ __html: item.message }}/>
-                    </div>
-                </li>
+                <CSSTransition key={item.ts} timeout={4000} classNames="fade">
+                    <li key={item.ts} className="message-screen">
+                        <div className={item.displayName === this.state.user.displayName ? "my-message" : ''}>
+                            <span className="message-sender">{item.displayName}</span>
+                            <span className="message" dangerouslySetInnerHTML={{ __html: item.message }}/>
+                        </div>
+                    </li>
+                </CSSTransition>
             )
         })
         return (
@@ -126,10 +129,11 @@ class Chatroom extends Component {
                     { (this.state.user) ? <button onClick={this.logoutMessage.bind(this)}>logout</button> : '' }
                 </div>
                 <div id="container-chat">
-                    <ul>
-                        {currentMessage}
-                    </ul>
-
+                    <TransitionGroup>
+                        <ul>
+                            {currentMessage}
+                        </ul>
+                    </TransitionGroup>
                 </div>
                 <div id="container-canvas">
                     <canvas ref="canvas"/>
