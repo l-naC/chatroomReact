@@ -158,6 +158,29 @@ const StyledChatRoom = styled.section`
             color: dodgerblue;
         }
       }
+      
+      #message-log{
+        width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      
+      #message-log button{
+        font-size: 1rem;
+        transition: 200ms ;
+        margin: 5px 5px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        background:dodgerblue;
+        color: black;
+        border: 1px solid dodgerblue;
+        box-sizing: border-box;
+        &:hover{
+            cursor: pointer;
+            background:white;
+            color: dodgerblue;
+        }
+      }
 `;
 
 export default StyledChatRoom;

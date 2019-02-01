@@ -121,7 +121,7 @@ class Chatroom extends Component {
         })
         return (
             < StyledChatRoom >
-                <div id="message-chat">
+                <div id="message-log">
                     <button onClick={this.loginMessage.bind(this)}>login</button>
                     { (this.state.user) ? <button onClick={this.logoutMessage.bind(this)}>logout</button> : '' }
                 </div>

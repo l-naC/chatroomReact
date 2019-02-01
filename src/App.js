@@ -6,9 +6,9 @@ import About from './views/About';
 
 const Header = () => (
     <nav className="navbar">
-        <ul className="navbar-list clearfix">
-            <li className="navbar-item"><Link className="navbar-link" to={`${process.env.PUBLIC_URL}/`}>Home</Link></li>
-            <li className="navbar-item"><Link className="navbar-link" to={`${process.env.PUBLIC_URL}/about`}>About</Link></li>
+        <ul className="navbar-list clearfix App-ul">
+            <li className="navbar-item App-li"><Link className="navbar-link" to={`${process.env.PUBLIC_URL}/`}>Home</Link></li>
+            <li className="navbar-item App-li"><Link className="navbar-link" to={`${process.env.PUBLIC_URL}/about`}>About</Link></li>
         </ul>
     </nav>
 )
@@ -23,7 +23,7 @@ const Main = () => (
 )
 
 const App = () => (
-    <div className="">
+    <div>
         <Header/>
         <Main/>
     </div>
