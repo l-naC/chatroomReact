@@ -103,7 +103,16 @@ class Chatroom extends Component {
             };
         }
     }
-
+    get markedDown(){
+        return (this.state.tabMessages).map((entry) => {
+            return ({
+                ts: entry.ts,
+                uid: entry.uid,
+                displayName: entry.displayName,
+                message: (entry.message) ? marked((entry.message).toString(), {sanitize: true}) : ''
+            })
+        })
+    }
     render() {
         const currentMessage = this.markedDown.map((item) => {
             return (
