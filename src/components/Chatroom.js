@@ -41,14 +41,12 @@ class Chatroom extends Component {
             }
         });
     }
-
     updateMessage(event){
         console.log('updateMessage: '+event.target.value)
         this.setState({
             messages: event.target.value
         })
     }
-
     submitMessage(event){
         console.log('submitMessage: '+this.state.messages)
         if (this.state.user){
@@ -91,10 +89,10 @@ class Chatroom extends Component {
                             snapshot.ref.getDownloadURL()
                                 .then(downloadURL => {
                                     this.setState({
-                                        message:  downloadURL
+                                        messages: "![prout](" + downloadURL + ")"
                                     })
-                                    console.log(downloadURL)
                                     this.submitMessage()
+                                    console.log("![prout](" + downloadURL + ")")
                                     // TODO : cleanup canvas && fileinput
                                 });
                         })
