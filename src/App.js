@@ -1,28 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import {Link, Route, Switch} from "react-router-dom";
+import Home from './views/Home';
+import About from './views/About';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const Header = () => (
+    <nav className="navbar">
+        <ul className="navbar-list clearfix">
+            <li className="navbar-item"><Link className="navbar-link" to={`${process.env.PUBLIC_URL}/`}>Home</Link></li>
+            <li className="navbar-item"><Link className="navbar-link" to={`${process.env.PUBLIC_URL}/about`}>About</Link></li>
+        </ul>
+    </nav>
+)
+
+const Main = () => (
+    <main className="container">
+        <Switch>
+            <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home}/>
+            <Route exact path={`${process.env.PUBLIC_URL}/about`} component={About}/>
+        </Switch>
+    </main>
+)
+
+const App = () => (
+    <div className="">
+        <Header/>
+        <Main/>
+    </div>
+)
 
 export default App;

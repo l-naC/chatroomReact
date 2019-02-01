@@ -74,7 +74,6 @@ class Chatroom extends Component {
     loadFile(event){
         if(event.target.files[0]) {
             const file = event.target.files[0];
-            //const reader = new FileReader();
             // TODO : check si c'est une image
             let img = new Image();
             img.src = URL.createObjectURL(file);
@@ -88,11 +87,11 @@ class Chatroom extends Component {
                     firebase.storage().ref('images/').child(file.name)
                         .put(blob)
                         .then(snapshot => {
-                            // supdate input with blod url
+                            // update input with blod url
                             snapshot.ref.getDownloadURL()
                                 .then(downloadURL => {
                                     this.setState({
-                                        message: "![prout](" + downloadURL + ")"
+                                        message:  downloadURL
                                     })
                                     console.log(downloadURL)
                                     this.submitMessage()
