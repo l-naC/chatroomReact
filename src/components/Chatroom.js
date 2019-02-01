@@ -118,7 +118,7 @@ class Chatroom extends Component {
             return (
                 <li key={item.ts}>
                     {item.ts} : {item.displayName}
-                    <div>{item.message}</div>
+                    <div dangerouslySetInnerHTML={{ __html: item.message }} />
                 </li>
             )
         })
