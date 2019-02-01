@@ -120,8 +120,7 @@ class Chatroom extends Component {
             )
         })
         return (
-            <div>
-                < StyledChatRoom />
+                < StyledChatRoom >
                 <button onClick={this.loginMessage.bind(this)}>login</button>
                 { (this.state.user) ? <button onClick={this.logoutMessage.bind(this)}>logout</button> : '' }
                 <div  id="container-chat">
@@ -130,13 +129,13 @@ class Chatroom extends Component {
                     </ul>
                 </div>
                 <canvas ref="canvas" />
-                <form onSubmit={this.submitMessage.bind(this)}>
+                <form onSubmit={this.submitMessage.bind(this)} id="message-chat">
                     <input type="file" ref="fileInput" onChange={this.loadFile.bind(this)}/>
                     <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message"/>
                     <br/>
                     <button type="submit" value="submit">Submit Message</button>
                 </form>
-            </div>
+                </StyledChatRoom>
         );
     }
 }
