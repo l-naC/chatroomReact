@@ -15,8 +15,13 @@ const StyledChatRoom = styled.section`
       a {
         color: #42b983;
       }
-      canvas{
-        display: none;
+      #container-canvas{
+        height: 150px;
+        width: 800px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 7px;
+        border: 1px solid lightgray;
       }
       .list-item {
         display: inline-block;
@@ -138,8 +143,20 @@ const StyledChatRoom = styled.section`
       }
       
       #message-chat input[type="file"]{
-        opacity: 0;
-        height:0;
+        font-size: 1rem;
+        transition: 200ms ;
+        margin: 5px 5px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        background:dodgerblue;
+        color: white;
+        border: 1px solid dodgerblue;
+        box-sizing: border-box;
+        &:hover{
+            cursor: pointer;
+            background:white;
+            color: dodgerblue;
+        }
       }
 `;
 

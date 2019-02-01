@@ -112,30 +112,35 @@ class Chatroom extends Component {
         const currentMessage = this.markedDown.map((item) => {
             return (
                 <li key={item.ts} className="message-screen">
-                    {item.ts} : {item.displayName}
-                    <div className="my-message">
+                    <div className={item.displayName === this.state.user.displayName ? "my-message" : ''}>
+                        <span className="message-sender">{item.displayName}</span>
                         <span className="message" dangerouslySetInnerHTML={{ __html: item.message }}/>
                     </div>
                 </li>
             )
         })
         return (
-                < StyledChatRoom >
-                <button onClick={this.loginMessage.bind(this)}>login</button>
-                { (this.state.user) ? <button onClick={this.logoutMessage.bind(this)}>logout</button> : '' }
-                <div  id="container-chat">
+            < StyledChatRoom >
+                <div id="message-chat">
+                    <button onClick={this.loginMessage.bind(this)}>login</button>
+                    { (this.state.user) ? <button onClick={this.logoutMessage.bind(this)}>logout</button> : '' }
+                </div>
+                <div id="container-chat">
                     <ul>
                         {currentMessage}
                     </ul>
+
                 </div>
-                <canvas ref="canvas" />
+                <div id="container-canvas">
+                    <canvas ref="canvas"/>
+                </div>
                 <form onSubmit={this.submitMessage.bind(this)} id="message-chat">
                     <input type="file" ref="fileInput" onChange={this.loadFile.bind(this)}/>
                     <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message"/>
                     <br/>
                     <button type="submit" value="submit">Submit Message</button>
                 </form>
-                </StyledChatRoom>
+            </StyledChatRoom>
         );
     }
 }

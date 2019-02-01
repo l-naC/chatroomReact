@@ -1,16 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
+import * as firebase from "firebase";
+import {Redirect} from "react-router-dom";
 
-class About extends Component {
+class About extends React.Component{
+    constructor(){
+        super()
+        this.state = {
+            user: ''
+        }
+    }
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                // User is signed in.
+                this.setState({
+                    user: user
+                })
+            } else {
+                // No user is signed in.
+                this.setState({
+                    user: false
+                })
+            }
+        });
+    }
+    get renderRedirect(){
+        if (this.state.user === false){
+            return <Redirect to='/' />
+        }
+    }
     render() {
-        return (
-            <div className="About">
-                <header className="">
-                    <p>
-                        Edit and save to reload.
-                    </p>
-                </header>
+        return(
+            <div>
+                {this.renderRedirect}
+                <p>You're connected</p>
             </div>
-        );
+        )
     }
 }
 

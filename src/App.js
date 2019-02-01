@@ -17,7 +17,7 @@ const Main = () => (
     <main className="container">
         <Switch>
             <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home}/>
-            <Route exact path={`${process.env.PUBLIC_URL}/about`} component={About}/>
+            <Route If condition={true} exact path={`${process.env.PUBLIC_URL}/about`} component={About}/>
         </Switch>
     </main>
 )
