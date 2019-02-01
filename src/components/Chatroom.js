@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import '../App.css';
 import * as firebase from 'firebase';
 import marked from 'marked'
+import StyledChatRoom from './style'
+
 class Chatroom extends Component {
     constructor(){
         super()
-        this.updateMessage = this.updateMessage.bind(this)
-        this.submitMessage = this.submitMessage.bind(this)
-        this.loginMessage = this.loginMessage.bind(this)
-        this.logoutMessage = this.logoutMessage.bind(this)
-        this.loadFile = this.loadFile.bind(this)
         this.state = {
             user: false,
             messages: '',
@@ -110,26 +107,32 @@ class Chatroom extends Component {
             })
         })
     }
+
     render() {
         const currentMessage = this.markedDown.map((item) => {
             return (
-                <li key={item.ts}>
+                <li key={item.ts} className="message-screen">
                     {item.ts} : {item.displayName}
-                    <div dangerouslySetInnerHTML={{ __html: item.message }} />
+                    <div className="my-message">
+                        <span className="message" dangerouslySetInnerHTML={{ __html: item.message }}/>
+                    </div>
                 </li>
             )
         })
         return (
             <div>
-                <button onClick={this.loginMessage}>login</button>
-                { (this.state.user) ? <button onClick={this.logoutMessage}>logout</button> : '' }
-                <ul>
-                    {currentMessage}
-                </ul>
+                < StyledChatRoom />
+                <button onClick={this.loginMessage.bind(this)}>login</button>
+                { (this.state.user) ? <button onClick={this.logoutMessage.bind(this)}>logout</button> : '' }
+                <div  id="container-chat">
+                    <ul>
+                        {currentMessage}
+                    </ul>
+                </div>
                 <canvas ref="canvas" />
-                <form onSubmit={this.submitMessage}>
-                    <input type="file" ref="fileInput" onChange={this.loadFile}/>
-                    <input onChange={this.updateMessage} type="text" placeholder="Message"/>
+                <form onSubmit={this.submitMessage.bind(this)}>
+                    <input type="file" ref="fileInput" onChange={this.loadFile.bind(this)}/>
+                    <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message"/>
                     <br/>
                     <button type="submit" value="submit">Submit Message</button>
                 </form>
